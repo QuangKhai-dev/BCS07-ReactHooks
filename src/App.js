@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomeTemplate from './templates/HomeTemplate';
+import DemoUseState from './pages/DemoUseState/DemoUseState';
+import DemoUseEffect from './pages/DemoUseEffect/DemoUseEffect';
+import Detail from './pages/DemoUseEffect/Detail';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="" element={<HomeTemplate />}>
+          <Route path="usestate" element={<DemoUseState />} />
+          <Route path="useeffect" element={<DemoUseEffect />} />
+          {/* localhost:3000/shoes/5  */}
+          <Route path="shoes">
+            <Route path=":id" element={<Detail />} />
+          </Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
